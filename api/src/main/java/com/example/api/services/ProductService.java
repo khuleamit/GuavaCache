@@ -1,10 +1,18 @@
 package com.example.api.services;
 
+import com.example.api.datacache.ICacheLoaderService;
 import com.example.api.entities.Product;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductService {
+public class ProductService implements ICacheLoaderService<String> {
+
+    @Override
+    public String getBackendData(String id) {
+        //Fetch Product record from backend service and return ProductName
+        Product productFromBackendService = getProductByID(id);
+        return productFromBackendService.getName();
+    }
 
     public Product getProductByID(String id)
     {

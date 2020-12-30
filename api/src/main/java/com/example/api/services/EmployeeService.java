@@ -1,11 +1,17 @@
 package com.example.api.services;
 
+import com.example.api.datacache.ICacheLoaderService;
 import com.example.api.entities.Employee;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmployeeService {
+public class EmployeeService implements ICacheLoaderService<Employee> {
 
+
+    @Override
+    public Employee getBackendData(String id) {
+        return getEmployeeByID(id);
+    }
 
     public Employee getEmployeeByID(String id)
     {

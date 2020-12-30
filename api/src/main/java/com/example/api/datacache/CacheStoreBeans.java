@@ -9,13 +9,15 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class CacheStoreBeans {
 
+    //Create Instance of LoadingCache for EmployeeService with Retention Period as 120 Seconds
     @Bean
-    public CacheStore<Employee> employeeCache() {
-        return new CacheStore<Employee>(120, TimeUnit.SECONDS);
+    public LoadingCacheStore<Employee> employeeLoadingCache(ICacheLoaderService<Employee> employeeService) {
+        return new LoadingCacheStore<>(120, TimeUnit.SECONDS, employeeService);
     }
 
+    //Create Instance of LoadingCache for ProductService (fetching only productName string) Retention Period as 300 Seconds
     @Bean
-    public CacheStore<String> productNameCache() {
-        return new CacheStore<String>(1, TimeUnit.HOURS);
+    public LoadingCacheStore<String> productNameLoadingCache(ICacheLoaderService<String> productService) {
+        return new LoadingCacheStore<>(300, TimeUnit.SECONDS, productService);
     }
 }
