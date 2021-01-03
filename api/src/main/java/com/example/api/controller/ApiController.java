@@ -27,7 +27,11 @@ public class ApiController {
             //Search Employee record in LoadingCache
             //LoadingCache will in turn fetch from backend service if record is not already present in Cache
             Employee empRecord = employeeLoadingCache.get(id);
-            System.out.println("Employee record returned by Loadingcache  : " + empRecord.getName());
+
+            System.out.println("Employee record returned by "
+                    + employeeLoadingCache.getClass().getSimpleName()
+                    + " : " + empRecord.getName());
+
             return empRecord;
 
         } catch (ExecutionException e) {
@@ -46,7 +50,11 @@ public class ApiController {
 
             //Search Product Name in Cache
             String productName = productNameLoadingCache.get(id);
-            System.out.println("Product name returned by Loadingcache : " + productName);
+
+            System.out.println("Product name returned by Loadingcache : "
+                    + productNameLoadingCache.getClass().getSimpleName()
+                    + " : " + productName);
+
             return productName;
 
         } catch (ExecutionException e) {

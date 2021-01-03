@@ -15,7 +15,7 @@ public class LoadingCacheStore<T> {
     public LoadingCacheStore(int expiryDuration, TimeUnit timeUnit, ICacheLoaderService<T> service) {
 
         //Note the use of interface ICacheLoaderService here
-        //   ICacheLoaderService provides a way to implement a common methode
+        //   ICacheLoaderService provides a way to implement a common method
         //   i.e. --> public T getBackendData(key)
         //   in all services wish to use this LoadingCache
 
@@ -24,6 +24,9 @@ public class LoadingCacheStore<T> {
         CacheLoader<String, T> loader = new CacheLoader<>() {
             @Override
             public T load(String key) {
+                System.out.println("Record is not present in LoadingCache "
+                        + service.getClass().getSimpleName()
+                        + "... Fetching from backend api...");
                 return service.getBackendData(key);
             }
         };
