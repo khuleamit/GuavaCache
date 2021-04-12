@@ -17,6 +17,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	compile group: 'com.google.guava', name: 'guava', version: '30.0-jre'
+
+	//to enable swagger UI
+	implementation "io.springfox:springfox-boot-starter:3.0.0"
+	compile 'io.springfox:springfox-swagger-ui:3.0.0'
 }
 
 test {
